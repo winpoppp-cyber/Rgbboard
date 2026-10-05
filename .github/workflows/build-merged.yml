@@ -18,10 +18,11 @@ jobs:
           curl -L -o installer.jar https://maven.neoforged.net/releases/net/neoforged/neoforge/21.1.252/neoforge-21.1.252-installer.jar
           mkdir -p out
           java -jar installer.jar --installServer ./out
-          find ./out -name "*.jar" | head -50
+          echo "=== ALL JARS ==="
+          find ./out -name "*.jar" -exec ls -la {} \;
 
-      - name: Upload jars
+      - name: Upload all jars
         uses: actions/upload-artifact@v4
         with:
-          name: neoforge-jars
-          path: out/libraries/net/neoforged/neoforge/21.1.252/
+          name: all-jars
+          path: out/
